@@ -7,12 +7,13 @@ double m  = 24.;      //Nombre de valeurs
 
 //A modifier pour l'entrainement
 
-double eps = 100000.;    //Objectif d'erreur
+double eps = 0.5;    //Objectif d'erreur
 double alpha = 0.0005;    //Taux d'apprentissage
 
 //Valeurs d'entrainements
 double xi[] = {5.,5.,5.,5.,10.,10.,10.,10.,30.,30.,30.,30.,45.,45., 45.,45.,70.,70.,70.,70.,90.,90,90.,90};
-double yi[] = {8000.,8300.,8000.,8100.,9900.,9900.,10000.,10700.,16500.,16800.,16020., 16150., 21290., 21620., 21000., 20700., 28900., 28200., 27950., 27810., 34160.,34520.,34250.,35160.};
+double yi[] = {8.000,8.300,8.000,8.100,9.900,9.900,10.000,10.700,16.500,16.800,16.020, 16.150, 21.290, 21.620, 21.000, 20.700, 28.900, 28.200, 27.950, 27.810, 34.160,34.520,34.250,35.160};
+//Yi en k RPM
 
 
 //Todo Fonction de prédiction duty cycle => vitesse
@@ -44,9 +45,10 @@ void learnerMLR() {
   do {
     //Todo: Descente de gradient 
     //Regression lineaire
+    erreur = 0.0;
 
 
-    Serial.print("Erreur Cumulee: ");
+    Serial.print("Erreur: ");
     Serial.println(erreur,6);
   } while (eps<erreur);
   Serial.print("Theta0: ");
