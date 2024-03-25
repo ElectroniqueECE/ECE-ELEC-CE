@@ -12,7 +12,7 @@ void Convolution2D(const float input[DATA_SIZE][DATA_SIZE], const float kernel[K
 
 void maxPooling_2(const float pool_in[(DATA_SIZE/POOL_SIZE)][(DATA_SIZE/POOL_SIZE)], float pool_out[(DATA_SIZE/POOL_SIZE)/POOL_SIZE][(DATA_SIZE/POOL_SIZE)/POOL_SIZE] )
 {
-  // // à compléter ( même code que Convolution2D, mais en adaptant les dimensions des tableaux ! )
+  // // à compléter ( même code que maxPooling, mais en adaptant les dimensions des tableaux ! )
 }
 
 void Convolution2D_2(const float input[((DATA_SIZE/POOL_SIZE)/POOL_SIZE)][(DATA_SIZE/POOL_SIZE)], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float output[(DATA_SIZE/POOL_SIZE)][(DATA_SIZE/POOL_SIZE)])
