@@ -5,7 +5,7 @@
 #define LAYER 2
 
 const float kernel1[KERNEL_SIZE][KERNEL_SIZE] = {{-0.125, -0.125, -0.125}, 
-                                                 {0.125, 1, -0.125}, 
+                                                 {-0.125, 1, -0.125}, 
                                                  {-0.125, -0.125, -0.125}};
 // Première Couche 
 void maxPooling(const float poolinput[DATA_SIZE][DATA_SIZE], float pool[DATA_SIZE/POOL_SIZE][DATA_SIZE/POOL_SIZE] );
