@@ -1,29 +1,26 @@
 #include <Arduino.h>
 #define POOL_SIZE 2 // max-pooling size
-#define DATA_SIZE 28 // on consisdère une image de 28x28 ( donc carré )
+#define DATA_ROW 48
+#define DATA_COL 13
 #define KERNEL_SIZE 3
-#define LAYER 2
+#define LAYER 1
 
-const float kernel1[KERNEL_SIZE][KERNEL_SIZE] = {{-0.125, -0.125, -0.125}, 
-                                                 {-0.125, 1, -0.125}, 
-                                                 {-0.125, -0.125, -0.125}};
-// Première Couche 
-void maxPooling(const float poolinput[DATA_SIZE][DATA_SIZE], float pool[DATA_SIZE/POOL_SIZE][DATA_SIZE/POOL_SIZE] );
+const float kernel1[KERNEL_SIZE][KERNEL_SIZE] = {{0, 0.1, 0}, 
+                                                 {0.1, 0.8, 0.1}, 
+                                                 {0, 0.1, 0}};
 
-void Convolution2D(const float input[DATA_SIZE][DATA_SIZE], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float output[DATA_SIZE][DATA_SIZE]);
+void maxPooling(const float poolinput[DATA_ROW][DATA_COL], float pool[DATA_ROW/POOL_SIZE][DATA_COL/POOL_SIZE] );
 
-// Seconde Couche 
-void Convolution2D_2(const float input[DATA_SIZE/POOL_SIZE][DATA_SIZE/POOL_SIZE], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float output[DATA_SIZE/POOL_SIZE][DATA_SIZE/POOL_SIZE]);
+void Convolution2D(const float input[DATA_ROW][DATA_COL], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float output[DATA_ROW][DATA_COL]);
 
-void maxPooling_2(const float input[DATA_SIZE/POOL_SIZE][DATA_SIZE/POOL_SIZE], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float pool[DATA_SIZE/(POOL_SIZE*LAYER)][DATA_SIZE/(POOL_SIZE*LAYER)] );
+void Convolution2D_2(const float input[DATA_ROW/POOL_SIZE][DATA_COL/POOL_SIZE], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float output[DATA_ROW/POOL_SIZE][DATA_COL/POOL_SIZE]);
 
-void flatten2vector(float input[DATA_SIZE/(POOL_SIZE*LAYER)][DATA_SIZE/(POOL_SIZE*LAYER)], float output[(DATA_SIZE/(POOL_SIZE*LAYER)) * (DATA_SIZE/(POOL_SIZE*LAYER))]);
+void maxPooling_2(const float input[DATA_ROW/POOL_SIZE][DATA_COL/POOL_SIZE], const float kernel[KERNEL_SIZE][KERNEL_SIZE], float pool[DATA_ROW/(POOL_SIZE*LAYER)][DATA_COL/(POOL_SIZE*LAYER)] );
+
+void flatten2vector(float input[DATA_ROW/(POOL_SIZE*LAYER)][DATA_COL/(POOL_SIZE*LAYER)], float output[(DATA_ROW/(POOL_SIZE*LAYER)) * (DATA_COL/(POOL_SIZE*LAYER))]);
 
 
-// Fonction qui sera appelé dans le setup de votre code arduino 
-// input : image de 28x28 pixels
-// output : vector à 1 dimension qui sera envoyé au réseau de neurones
-// Le calcule doit donc être fait pour toute les images de la base de donnée avant de les FeedForward dans le réseau de neurones ( cf Architecture du TP)
-void cnn(const float input[DATA_SIZE][DATA_SIZE], float output[(DATA_SIZE/(POOL_SIZE*LAYER)) * (DATA_SIZE/(POOL_SIZE*LAYER))]);
 
-void testPrint(float output[(DATA_SIZE/(POOL_SIZE*LAYER)) * (DATA_SIZE/(POOL_SIZE*LAYER))]);
+void cnn(const float input[DATA_ROW][DATA_COL], float output[(DATA_ROW/(POOL_SIZE*LAYER)) * (DATA_COL/(POOL_SIZE*LAYER))]);
+
+void testPrint(float output[(DATA_ROW/(POOL_SIZE*LAYER)) * (DATA_COL/(POOL_SIZE*LAYER))]);
