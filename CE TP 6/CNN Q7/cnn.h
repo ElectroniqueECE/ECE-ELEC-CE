@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #define POOL_SIZE 2 // max-pooling size
-#define DATA_ROW 48
-#define DATA_COL 13
+#define DATA_ROW 28
+#define DATA_COL 28
 #define KERNEL_SIZE 3
 #define LAYER 1
 
